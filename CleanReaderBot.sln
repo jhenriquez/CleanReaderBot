@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1259A9DE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.Tests", "tests\CleanReaderBot.Application.Tests\CleanReaderBot.Application.Tests.csproj", "{FF7CF22D-EEA9-4478-BFDB-47DD474D1A24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.Goodreads", "src\CleanReaderBot.Application.Goodreads\CleanReaderBot.Application.Goodreads.csproj", "{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,9 +50,22 @@ Global
 		{FF7CF22D-EEA9-4478-BFDB-47DD474D1A24}.Release|x64.Build.0 = Release|Any CPU
 		{FF7CF22D-EEA9-4478-BFDB-47DD474D1A24}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF7CF22D-EEA9-4478-BFDB-47DD474D1A24}.Release|x86.Build.0 = Release|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Release|x64.Build.0 = Release|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{438FEE05-D6F2-4FD5-91A3-E37491BB4263} = {F5ADFFAE-0D98-4209-8C2E-56857B7269F1}
 		{FF7CF22D-EEA9-4478-BFDB-47DD474D1A24} = {1259A9DE-AA77-4199-B0C1-34B30B43BE63}
+		{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8} = {F5ADFFAE-0D98-4209-8C2E-56857B7269F1}
 	EndGlobalSection
 EndGlobal
