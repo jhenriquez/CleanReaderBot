@@ -22,7 +22,7 @@ namespace CleanReaderBot.Application.Goodreads
       this.settings = settings;
     }
 
-    public async Task<Book[]> Search(SearchBooks query)
+    private UriBuilder BuildUri(SearchBooks query) 
     {
       var uri = new UriBuilder("https://www.goodreads.com/search/index.xml");
       var queryParameters = HttpUtility.ParseQueryString(string.Empty);
@@ -30,10 +30,19 @@ namespace CleanReaderBot.Application.Goodreads
       queryParameters["q"] = query.Query;
       queryParameters["field"] = query.Field.ToString();
       uri.Query = queryParameters.ToString();
+      return uri;
+    }
+
+    public async Task<Book[]> Search(SearchBooks query)
+    {
+      var uri = this.BuildUri(query);
       var responseStream = await this.client.GetStreamAsync(uri.ToString());
       var xmlSerializer = new XmlSerializer(typeof(GoodreadsResponse));
       var response = (GoodreadsResponse) xmlSerializer.Deserialize(responseStream);
-      return response.Result.Works.Select(w => new Book { Id = w.BestBook.Id, Title = w.BestBook.Title }).ToArray();
+      
+      return response.Result.Works.Select(w => 
+        new Book { Id = w.BestBook.Id, Title = w.BestBook.Title
+      }).ToArray();
     }
   }
 }

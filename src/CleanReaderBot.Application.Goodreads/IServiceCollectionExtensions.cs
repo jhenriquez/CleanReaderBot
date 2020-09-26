@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanReaderBot.Application.Goodreads
 {
-   public static class IServiceCollectionExtensions
+  public static class IServiceCollectionExtensions
   {
     public static IServiceCollection AddCleanReaderBotGoodreadsIntegration(this IServiceCollection services)
     {
