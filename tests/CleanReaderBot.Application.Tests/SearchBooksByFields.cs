@@ -46,12 +46,9 @@ namespace CleanReaderBot.Application.Tests
     [Fact]
     public async Task SearchBooks_Result_Contains_List_Of_Books() {
       using(this.interceptor.BeginScope()) {
-        /*
-         TODO: Improve Request Filter
-        */
         var builder = new HttpRequestInterceptionBuilder()
           .Requests()
-          .For((_) => true)
+          .For((req) => req.RequestUri.ToString().Contains("goodreads.com/search/index.xml"))
           .Responds()
           .WithContentStream(() => Task.FromResult(OpenFile("Fixtures/EndersGame_Response.xml")))
           .RegisterWith(this.interceptor);
