@@ -7,7 +7,7 @@ using AutoMapper;
 using CleanReaderBot.Application.Goodreads;
 using CleanReaderBot.Application.Tests.Helpers;
 
-namespace CleanReaderBot.Application.Tests
+namespace CleanReaderBot.Application.Goodreads.Tests
 {
     public class Startup
     {

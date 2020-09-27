@@ -1,25 +1,16 @@
-using System;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using FluentAssertions;
-using JustEat.HttpClientInterception;
+using NSubstitute;
 using CleanReaderBot.Application.Common.Interfaces;
 using CleanReaderBot.Application.SearchBooksByFields;
-using System.IO;
+
 
 namespace CleanReaderBot.Application.Tests
 {
   public class SearchBooksByFields
   {
-    private readonly IServiceProvider provider;
-    private readonly HttpClientInterceptorOptions interceptor;
-
-    public SearchBooksByFields(IServiceProvider provider, HttpClientInterceptorOptions interceptor) {
-      this.provider = provider;
-      this.interceptor = interceptor;
-    }
-
     private Stream OpenFile(string path)
     {
       return File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -44,23 +35,12 @@ namespace CleanReaderBot.Application.Tests
     }
 
     [Fact]
-    public async Task SearchBooks_Result_Contains_List_Of_Books() {
-      using(this.interceptor.BeginScope()) {
-        var builder = new HttpRequestInterceptionBuilder()
-          .Requests()
-          .For((req) => req.RequestUri.ToString().Contains("goodreads.com/search/index.xml"))
-          .Responds()
-          .WithContentStream(() => Task.FromResult(OpenFile("Fixtures/EndersGame_Response.xml")))
-          .RegisterWith(this.interceptor);
-
-        var searchBooksHandler = this.provider.GetService<IHandler<SearchBooks, SearchBooksResult>>();
-        
-        var searchBookQuery = new SearchBooks("Ender's Game");
-        
-        var result = await searchBooksHandler.Execute(searchBookQuery);
-        
-        result.Items.Should().HaveCount(20);
-      }
+    public async Task SearchBooks_Handler_Uses_BookProvider() {
+      var bookProvider = Substitute.For<IBookProvider>();
+      var searchBooksQuery = new SearchBooks("Ender's Game");
+      var searchBooksHandler = new SearchBooks.Handler(bookProvider);
+      await searchBooksHandler.Execute(searchBooksQuery);
+      await bookProvider.Received().Search(searchBooksQuery);
     }
   }
 }
