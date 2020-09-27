@@ -27,7 +27,7 @@ namespace CleanReaderBot.Application.Goodreads.Tests
     }
 
     [Fact]
-    public async Task GoodreadsBookProvider_Returns_A_List_Of_Books() {
+    public async Task GoodreadsBookProvider__Search__Returns_A_List_Of_Books() {
       using(this.interceptor.BeginScope()) {
         var builder = new HttpRequestInterceptionBuilder()
           .Requests()
