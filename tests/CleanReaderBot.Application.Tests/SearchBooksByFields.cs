@@ -22,7 +22,7 @@ namespace CleanReaderBot.Application.Tests
 
     private Stream OpenFile(string path)
     {
-      return File.Open(path, FileMode.Open);
+      return File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read);
     }
 
     [Fact]
