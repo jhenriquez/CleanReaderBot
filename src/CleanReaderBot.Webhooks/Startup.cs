@@ -48,8 +48,6 @@ namespace CleanReaderBot.Webhooks
 
 
       app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
-
-      telegram.StartWebHook();
     }
   }
 }
