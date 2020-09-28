@@ -16,30 +16,23 @@ namespace CleanReaderBot.Application.Goodreads
   public class GoodreadsBookProvider : IBookProvider
   {
     private readonly HttpClient client;
-    private readonly IOptions<GoodreadsAPISettings> settings;
+    private readonly GoodreadsAPISettings settings;
     private readonly IMapper mapper;
 
     public GoodreadsBookProvider(HttpClient client, IOptions<GoodreadsAPISettings> settings, IMapper mapper) 
     {
-      this.client = client;
-      this.settings = settings;
-      this.mapper = mapper;
-    }
-
-    private UriBuilder BuildUri(SearchBooks query) 
-    {
-      var uri = new UriBuilder("https://www.goodreads.com/search/index.xml");
-      var queryParameters = HttpUtility.ParseQueryString(string.Empty);
-      queryParameters["key"] = settings.Value.Key;
-      queryParameters["q"] = query.Query;
-      queryParameters["field"] = query.Field.ToString();
-      uri.Query = queryParameters.ToString();
-      return uri;
+        if (String.IsNullOrEmpty(settings.Value.Key)) {
+          throw new ArgumentException("The Goodreads API Key is required.");
+        }
+        
+        this.client = client;
+        this.settings = settings.Value;
+        this.mapper = mapper;
     }
 
     public async Task<Book[]> Search(SearchBooks query)
     {
-      var uri = this.BuildUri(query);
+      var uri = GoodreadsUriBuilder.BuildFor(query, settings);
       var responseStream = await this.client.GetStreamAsync(uri.ToString());
       var xmlSerializer = new XmlSerializer(typeof(GoodreadsResponse));
       var response = (GoodreadsResponse) xmlSerializer.Deserialize(responseStream);
