@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.Hosting;
 using CleanReaderBot.Webhooks.Services;
 
-namespace CleanReaderBot.Webhooks.Tests
+namespace CleanReaderBot.Webhooks.IntegrationTests
 {
     public class ApplicationFactory<TStartup> 
         : WebApplicationFactory<TStartup> where TStartup : class
