@@ -2,9 +2,8 @@ using System;
 using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using JustEat.HttpClientInterception;
 using AutoMapper;
-using CleanReaderBot.Application.Goodreads;
+using JustEat.HttpClientInterception;
 using CleanReaderBot.Application.Tests.Helpers;
 
 namespace CleanReaderBot.Application.Goodreads.Tests
@@ -15,7 +14,7 @@ namespace CleanReaderBot.Application.Goodreads.Tests
         
         public Startup() {
             Configuration = new ConfigurationBuilder()
-                .AddUserSecrets<Startup>()
+                .AddEnvironmentVariables()
                 .Build();
         }
 

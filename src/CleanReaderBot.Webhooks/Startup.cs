@@ -17,7 +17,7 @@ namespace CleanReaderBot.Webhooks
     public Startup()
     {
       Configuration = new ConfigurationBuilder()
-          .AddUserSecrets<Startup>()
+          .AddEnvironmentVariables()
           .Build();
     }
 

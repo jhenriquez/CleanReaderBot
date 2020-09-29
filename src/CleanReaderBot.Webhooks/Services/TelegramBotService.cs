@@ -11,7 +11,7 @@ namespace CleanReaderBot.Webhooks.Services
 
     public TelegramBotService(IOptions<TelegramSettings> config) {
         Settings = config.Value;
-        Client = new TelegramBotClient(Settings.BotToken);
+        Client = new TelegramBotClient(Settings.Token);
     }
 
     public async Task StartWebHook()

@@ -28,3 +28,4 @@ project.lock.json
 nupkg/
 Properties
 [Ss]ecrets.json
+.envrc
