@@ -1,6 +1,6 @@
 using System;
 using System.Web;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 
 namespace CleanReaderBot.Application.Goodreads {
     public static class GoodreadsUriBuilder {

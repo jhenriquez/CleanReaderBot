@@ -1,4 +1,4 @@
-namespace CleanReaderBot.Application.SearchBooksByFields
+namespace CleanReaderBot.Application.SearchForBooks
 {
     public enum SearchableFields
     {

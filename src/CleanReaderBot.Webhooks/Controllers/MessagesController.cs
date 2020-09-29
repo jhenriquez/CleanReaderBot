@@ -5,7 +5,7 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using CleanReaderBot.Webhooks.Models;
 using CleanReaderBot.Application.Common.Interfaces;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 
 namespace CleanReaderBot.Webhooks.Controllers
 {

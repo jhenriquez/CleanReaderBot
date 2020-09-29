@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CleanReaderBot.Application.Common.Interfaces;
 
-namespace CleanReaderBot.Application.SearchBooksByFields {
+namespace CleanReaderBot.Application.SearchForBooks {
   public class SearchBooks : IMessage<SearchBooksResult> {
     public string Query { get; private set; }
 

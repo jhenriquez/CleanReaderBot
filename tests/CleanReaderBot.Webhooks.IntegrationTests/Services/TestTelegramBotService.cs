@@ -12,7 +12,7 @@ namespace CleanReaderBot.Webhooks.IntegrationTests.Services
             : base(config, logger) { }
 
         public override async Task StartWebHook () {
-            // We're just overriding to prevent the real thing during tests.
+            await Task.CompletedTask;
         }
     }
 }

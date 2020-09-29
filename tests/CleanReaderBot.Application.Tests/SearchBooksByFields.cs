@@ -4,12 +4,12 @@ using Xunit;
 using FluentAssertions;
 using NSubstitute;
 using CleanReaderBot.Application.Common.Interfaces;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 
 
 namespace CleanReaderBot.Application.Tests
 {
-  public class SearchBooksByFields
+  public class SearchForBooks
   {
     private Stream OpenFile(string path)
     {

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using CleanReaderBot.Application.Common.Entities;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 
 namespace CleanReaderBot.Application.Common.Interfaces
 {

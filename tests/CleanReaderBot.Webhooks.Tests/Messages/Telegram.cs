@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using CleanReaderBot.Application.Common.Interfaces;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 using CleanReaderBot.Webhooks.Controllers;
 using CleanReaderBot.Webhooks.Models;
 using CleanReaderBot.Webhooks.Services;

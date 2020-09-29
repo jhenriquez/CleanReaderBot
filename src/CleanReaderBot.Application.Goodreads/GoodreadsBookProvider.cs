@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 using AutoMapper;
 using CleanReaderBot.Application.Common.Entities;
 using CleanReaderBot.Application.Common.Interfaces;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 
 
 namespace CleanReaderBot.Application.Goodreads

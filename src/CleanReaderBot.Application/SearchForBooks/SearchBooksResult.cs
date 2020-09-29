@@ -1,6 +1,6 @@
 using CleanReaderBot.Application.Common.Entities;
 
-namespace CleanReaderBot.Application.SearchBooksByFields
+namespace CleanReaderBot.Application.SearchForBooks
 {
     public class SearchBooksResult
     {

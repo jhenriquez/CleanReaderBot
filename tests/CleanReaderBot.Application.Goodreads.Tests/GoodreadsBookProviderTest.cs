@@ -7,7 +7,7 @@ using Xunit;
 using FluentAssertions;
 using JustEat.HttpClientInterception;
 using CleanReaderBot.Application.Common.Interfaces;
-using CleanReaderBot.Application.SearchBooksByFields;
+using CleanReaderBot.Application.SearchForBooks;
 using System.Net.Http;
 using AutoMapper;
 
