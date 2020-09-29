@@ -22,4 +22,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity q
+      env:
+        GOODREADS__KEY: ${{ secrets.GOODREADS__KEY }}
+        TELEGRAM__TOKEN: ${{ secrets.TELEGRAM__TOKEN }}
+      run: dotnet test --no-restore --verbosity m
