@@ -1,4 +1,4 @@
 namespace CleanReaderBot.Application.Common.Interfaces
 {
-    public interface IQuery<TResult> { }
+    public interface IMessage<TResult> { }
 }

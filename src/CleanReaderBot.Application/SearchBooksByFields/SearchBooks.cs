@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CleanReaderBot.Application.Common.Interfaces;
 
 namespace CleanReaderBot.Application.SearchBooksByFields {
-  public class SearchBooks : IQuery<SearchBooksResult> {
+  public class SearchBooks : IMessage<SearchBooksResult> {
     public string Query { get; private set; }
 
     public SearchableFields Field { get; private set; }
