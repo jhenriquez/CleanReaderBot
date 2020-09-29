@@ -3,6 +3,7 @@ using CleanReaderBot.Webhooks.Services;
 using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using CleanReaderBot.Webhooks.Models;
 
 namespace CleanReaderBot.Webhooks.Controllers
 {

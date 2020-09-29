@@ -6,6 +6,7 @@ using Telegram.Bot;
 using CleanReaderBot.Application;
 using CleanReaderBot.Application.Goodreads;
 using CleanReaderBot.Webhooks.Services;
+using CleanReaderBot.Webhooks.Models;
 
 namespace CleanReaderBot.Webhooks
 {

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
+using CleanReaderBot.Webhooks.Models;
 
 namespace CleanReaderBot.Webhooks.Services
 {

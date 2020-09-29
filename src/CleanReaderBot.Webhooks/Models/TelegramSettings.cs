@@ -1,4 +1,4 @@
-namespace CleanReaderBot.Webhooks
+namespace CleanReaderBot.Webhooks.Models
 {
     public class TelegramSettings
     {

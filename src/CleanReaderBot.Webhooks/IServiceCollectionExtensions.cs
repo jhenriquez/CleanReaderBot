@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using CleanReaderBot.Webhooks.Services;
 using Telegram.Bot;
+using CleanReaderBot.Webhooks.Services;
+using CleanReaderBot.Webhooks.Models;
 
 namespace CleanReaderBot.Webhooks
 {
