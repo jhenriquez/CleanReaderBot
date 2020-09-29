@@ -1,7 +1,9 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using CleanReaderBot.Webhooks.Services;
+using CleanReaderBot.Webhooks.IntegrationTests.Services;
 
 namespace CleanReaderBot.Webhooks.IntegrationTests
 {
@@ -12,7 +14,13 @@ namespace CleanReaderBot.Webhooks.IntegrationTests
         {
             builder.ConfigureServices(services =>
             {
+                var telegramDescriptors = services.Where(d => d.ImplementationType == typeof(TelegramBotService)).ToList();
                 
+                foreach(ServiceDescriptor telegramSvcDescriptor in telegramDescriptors) {
+                    services.Remove(telegramSvcDescriptor);
+                }
+
+                services.AddSingleton<TelegramBotService, TestTelegramBotService>();
             });
         }
     }

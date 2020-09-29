@@ -9,7 +9,9 @@ namespace CleanReaderBot.Webhooks
   {
     public static IServiceCollection AddCleanReaderBotWebhooksTelegramIntegration(this IServiceCollection services)
     {
-      services.AddSingleton<ISpecificBotService<TelegramBotClient, TelegramSettings>, TelegramBotService>();
+      services.AddSingleton<TelegramBotService>();
+      services.AddSingleton<IBotService>(x => x.GetRequiredService<TelegramBotService>());
+      services.AddSingleton<ISpecificBotService<TelegramBotClient, TelegramSettings>>(x => x.GetRequiredService<TelegramBotService>());
       return services;
     }
   }

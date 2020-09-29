@@ -1,8 +1,9 @@
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Telegram.Bot;
+using System.Collections.Generic;
 using CleanReaderBot.Application;
 using CleanReaderBot.Application.Goodreads;
 using CleanReaderBot.Webhooks.Services;
@@ -12,7 +13,6 @@ namespace CleanReaderBot.Webhooks
 {
   public class Startup
   {
-
     private IConfiguration Configuration;
 
     public Startup()
@@ -39,16 +39,16 @@ namespace CleanReaderBot.Webhooks
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(
-      IApplicationBuilder app, IWebHostEnvironment env,
-      ISpecificBotService<TelegramBotClient, TelegramSettings> telegram)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IEnumerable<IBotService> bots)
     { 
-      app.UseHttpsRedirection();
       app.UseRouting();
       app.UseCors();
 
-
       app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
+
+      foreach (IBotService bot in bots) {
+        bot.StartWebHook();
+      }
     }
   }
 }

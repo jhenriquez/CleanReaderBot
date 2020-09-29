@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using NSubstitute;
 using Telegram.Bot.Types;
 using Xunit;
 
