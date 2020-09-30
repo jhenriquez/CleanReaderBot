@@ -33,7 +33,7 @@ namespace CleanReaderBot.Webhooks
       services
         .AddCleanReaderBot()
         .AddCleanReaderBotGoodreadsIntegration()
-        .AddCleanReaderBotWebhooksTelegramIntegration()
+        .AddCleanReaderBotWebhooksIntegration()
         .Configure<GoodreadsAPISettings>(Configuration.GetSection("Goodreads"))
         .Configure<TelegramSettings>(Configuration.GetSection("Telegram"));
     }
@@ -47,7 +47,7 @@ namespace CleanReaderBot.Webhooks
       app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
 
       foreach (IBotService bot in bots) {
-        bot.StartWebHook();
+        bot.StartWebhook();
       }
     }
   }

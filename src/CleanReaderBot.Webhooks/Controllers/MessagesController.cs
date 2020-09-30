@@ -13,20 +13,21 @@ namespace CleanReaderBot.Webhooks.Controllers
   {
     public MessagesController(
       IHandler<SearchBooks, SearchBooksResult> searchBooksHandler,
-      ISpecificBotService<TelegramBotClient, TelegramSettings> telegram)
+      ISpecificBotService<ITelegramBotClient, TelegramSettings> telegram)
     {
       SearchBooksHandler = searchBooksHandler;
       TelegramService = telegram;
     }
 
     public IHandler<SearchBooks, SearchBooksResult> SearchBooksHandler { get; }
-    public ISpecificBotService<TelegramBotClient, TelegramSettings> TelegramService { get; }
+    public ISpecificBotService<ITelegramBotClient, TelegramSettings> TelegramService { get; }
 
     [HttpPost]
     public async Task<IActionResult> Telegram([FromBody] Update message)
     {
       var searchBooksQuery = new SearchBooks(message.InlineQuery.Query);
-      await SearchBooksHandler.Execute(searchBooksQuery);
+      var booksSearchResult = await SearchBooksHandler.Execute(searchBooksQuery);
+      await TelegramService.SendSearchResults(booksSearchResult, message.InlineQuery.Id);
       return Ok();
     }
   }
