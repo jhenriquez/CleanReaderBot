@@ -6,6 +6,7 @@ using CleanReaderBot.Application.Common.Entities;
 using CleanReaderBot.Application.SearchForBooks;
 using CleanReaderBot.Webhooks.Models;
 using CleanReaderBot.Webhooks.Services;
+using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NSubstitute;
@@ -19,7 +20,7 @@ namespace CleanReaderBot.Webhooks.Tests.Services {
         private IOptions<TelegramSettings> TelegramSettings;
         private ILogger<TelegramBotService> TelegramBotServiceLogger;
 
-        private IBotService TelegramBotService;
+        private ITelegramBotService TelegramBotService;
 
         public TelegramBotServiceTest () {
             TelegramSettings = Options.Create<TelegramSettings> (new TelegramSettings {
@@ -34,6 +35,20 @@ namespace CleanReaderBot.Webhooks.Tests.Services {
             TelegramBotService = new TelegramBotService (TelegramBotClient, TelegramSettings, TelegramBotServiceLogger);
         }
 
+        private Book GetExampleBook () {
+            return new Book () {
+                Id = 375802,
+                Title = "Ender's Game (Ender's Saga, #1)",
+                AverageRating = 4.30,
+                Author = new Author {
+                Id = 589,
+                Name = "Orson Scott Card"
+                },
+                ImageUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408303130l/375802._SY160_.jpg",
+                SmallImageUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408303130l/375802._SY75_.jpg"
+            };
+        }
+
         [Fact]
         public async Task TelegramBotService__StartWebhook__Uses_SetWebhookAsync_With_The_Given_WebhookUrl () {
             await TelegramBotService.StartWebhook ();
@@ -42,36 +57,36 @@ namespace CleanReaderBot.Webhooks.Tests.Services {
 
         [Fact]
         public async Task TelegramBotService__SendSearchResults__Uses_AnswerInlineQueryAsync__With_Items_As_InlineQueryResultArticles () {
-            var rand = new Random ();
-            
-            var booksSearchResult = SearchBooksResult.For (new Book[] {
-                new Book () {
-                    Id = rand.Next (10000),
-                    Title = "Probably a book that does not exist in real life."
-                }
-            });
-
-            var inlineQueryResults = booksSearchResult.Items.Select((b) => 
-                new InlineQueryResultArticle(
-                    id: b.Id.ToString(),
-                    title: b.Title,
-                    inputMessageContent: new InputTextMessageContent(String.Empty)
-                )
-            ).ToList();
-
+            var booksSearchResult = SearchBooksResult.For (new Book[] { GetExampleBook() });
+            var inlineQueryResults = booksSearchResult.Items.Select ((b) => TelegramBotService.CreateInlineQueryResultArticle(b, TelegramBotService.CreateInputTextMessageContent)).ToList ();
             var inlineQueryId = "SomeFakeId";
 
             await TelegramBotService.SendSearchResults (booksSearchResult, inlineQueryId);
 
-            /*
-             TODO:
-             This does not verify the list of articles is the expected one.
-             Need a way to verify equality of two InlineQueryResultArticle objects.
-            */
-            await TelegramBotClient.Received().AnswerInlineQueryAsync(
+            await TelegramBotClient.Received ().AnswerInlineQueryAsync (
                 inlineQueryId: inlineQueryId,
-                results: Arg.Any<IList<InlineQueryResultArticle>>()
+                results: Arg.Is<IList<InlineQueryResultArticle>> (iqras => iqras.SequenceEqual(inlineQueryResults))
             );
+        }
+
+        [Fact]
+        public void TelegramBotService__CreateInputTextMessageContent__Creates_HTML_Content_When_Given_A_Book () {
+            var book = GetExampleBook();
+            var inputTextMessageContent = TelegramBotService.CreateInputTextMessageContent (book);
+
+            inputTextMessageContent.MessageText.Should ().Be ($"<a href=\"{book.ImageUrl}\" target=\"_black\">&#8203;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
+        }
+
+        [Fact]
+        public void TelegramBotService__CreateInlineQueryResultArticle__Returns_A_Valid_Article_Given_A_Book () {
+            var book = GetExampleBook();
+            var createInputMessageContent = Substitute.For<Func<Book, InputMessageContentBase>>();
+            var inlineQueryResultArticle = TelegramBotService.CreateInlineQueryResultArticle(book, createInputMessageContent);
+
+            inlineQueryResultArticle.Title.Should().Be(book.Title);
+            inlineQueryResultArticle.Description.Should().Be(book.Author.Name);
+            inlineQueryResultArticle.ThumbUrl.Should().Be(book.SmallImageUrl);
+            createInputMessageContent.ReceivedCalls();
         }
     }
 }

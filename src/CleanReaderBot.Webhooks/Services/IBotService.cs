@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using CleanReaderBot.Application.Common.Entities;
 using CleanReaderBot.Application.SearchForBooks;
 
 namespace CleanReaderBot.Webhooks.Services
