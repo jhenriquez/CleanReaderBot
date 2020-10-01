@@ -9,7 +9,6 @@ using JustEat.HttpClientInterception;
 using CleanReaderBot.Application.Common.Interfaces;
 using CleanReaderBot.Application.SearchForBooks;
 using System.Net.Http;
-using AutoMapper;
 using System.Linq;
 
 namespace CleanReaderBot.Application.Goodreads.Tests
@@ -33,10 +32,9 @@ namespace CleanReaderBot.Application.Goodreads.Tests
     public void GoodreadsBookProvider__Constructor__Should_Throw_Argument_Exception_When_Key_Is_Not_Provided()
     {
       var client = this.provider.GetService<HttpClient>();
-      var mapper = this.provider.GetService<IMapper>();
       var settingsWithNoKey = new GoodreadsAPISettings();
 
-      this.Invoking((_) => new GoodreadsBookProvider(client, Options.Create(settingsWithNoKey), mapper))
+      this.Invoking((_) => new GoodreadsBookProvider(client, Options.Create(settingsWithNoKey)))
           .Should().Throw<ArgumentException>();
     }
 

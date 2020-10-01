@@ -1,7 +1,6 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
-using AutoMapper;   
 using CleanReaderBot.Webhooks.Services;
 using CleanReaderBot.Webhooks.Models;
 using Microsoft.Extensions.Options;
@@ -21,7 +20,6 @@ namespace CleanReaderBot.Webhooks
       services.AddSingleton<TelegramBotService>();
       services.AddSingleton<IBotService>(x => x.GetRequiredService<TelegramBotService>());
       services.AddSingleton<ISpecificBotService<ITelegramBotClient, TelegramSettings>>(x => x.GetRequiredService<TelegramBotService>());
-      services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
       return services;
     }
   }
