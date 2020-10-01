@@ -37,7 +37,21 @@ namespace CleanReaderBot.Application.Goodreads
       var xmlSerializer = new XmlSerializer(typeof(GoodreadsResponse));
       var response = (GoodreadsResponse) xmlSerializer.Deserialize(responseStream);
       
-      return response.Result.Works.Select(w => this.mapper.Map<Book>(w.BestBook)).ToArray();
+      return response.Result.Works.Select(w => 
+      {
+        return new Book {
+          Id = w.BestBook.Id,
+          AverageRating = w.AverageRating,
+          Title = w.BestBook.Title,
+          Author = new Author {
+            Id = w.BestBook.Author.Id,
+            Name = w.BestBook.Author.Name
+          },
+          ImageUrl = w.BestBook.ImageUrl,
+          SmallImageUrl = w.BestBook.SmallImageUrl
+        };
+      }).ToArray();
+      
     }
   }
 }
