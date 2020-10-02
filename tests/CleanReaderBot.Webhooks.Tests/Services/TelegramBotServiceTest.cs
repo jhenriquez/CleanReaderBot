@@ -76,7 +76,8 @@ namespace CleanReaderBot.Webhooks.Tests.Services {
             var book = GetExampleBook();
             var inputTextMessageContent = TelegramBotService.CreateInputTextMessageContent (book);
 
-            inputTextMessageContent.MessageText.Should().Be ($"<a href=\"{book.ImageUrl}\" target=\"_black\">&#8203;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
+            inputTextMessageContent.MessageText.Should().Be ($"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n&#127775 <b>{String.Format("{0:0.00}",book.AverageRating)}</b>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
+            inputTextMessageContent.ParseMode = ParseMode.Html;
         }
 
         [Fact]

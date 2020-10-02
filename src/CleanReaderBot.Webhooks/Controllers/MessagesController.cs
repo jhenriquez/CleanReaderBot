@@ -6,6 +6,7 @@ using Telegram.Bot.Types;
 using CleanReaderBot.Webhooks.Models;
 using CleanReaderBot.Application.Common.Interfaces;
 using CleanReaderBot.Application.SearchForBooks;
+using Telegram.Bot.Types.Enums;
 
 namespace CleanReaderBot.Webhooks.Controllers
 {
@@ -25,9 +26,14 @@ namespace CleanReaderBot.Webhooks.Controllers
     [HttpPost]
     public async Task<IActionResult> Telegram([FromBody] Update message)
     {
-      var searchBooksQuery = new SearchBooks(message.InlineQuery.Query);
-      var booksSearchResult = await SearchBooksHandler.Execute(searchBooksQuery);
-      await TelegramService.SendSearchResults(booksSearchResult, message.InlineQuery.Id);
+      switch (message.Type) {
+        case UpdateType.InlineQuery:
+          var searchBooksQuery = new SearchBooks(message.InlineQuery.Query);
+          var booksSearchResult = await SearchBooksHandler.Execute(searchBooksQuery);
+          await TelegramService.SendSearchResults(booksSearchResult, message.InlineQuery.Id);
+          break;
+      }
+      
       return Ok();
     }
   }

@@ -7,6 +7,7 @@ using CleanReaderBot.Webhooks.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
+using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InlineQueryResults;
 
 namespace CleanReaderBot.Webhooks.Services {
@@ -36,7 +37,10 @@ namespace CleanReaderBot.Webhooks.Services {
     }
 
     public InputTextMessageContent CreateInputTextMessageContent (Book book) {
-      return new InputTextMessageContent ($"<a href=\"{book.ImageUrl}\" target=\"_black\">&#8203;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
+      var bookInfoHTML = $"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n&#127775 <b>{String.Format("{0:0.00}",book.AverageRating)}</b>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.";
+      var inputTextMessageContent = new InputTextMessageContent (bookInfoHTML);
+      inputTextMessageContent.ParseMode = ParseMode.Html;
+      return inputTextMessageContent;
     }
 
     public InlineQueryResultArticle CreateInlineQueryResultArticle (Book book, Func<Book, InputMessageContentBase> createInputMessageContent) {
