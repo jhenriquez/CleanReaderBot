@@ -6,11 +6,13 @@ using CleanReaderBot.Application.Common.Entities;
 using CleanReaderBot.Application.SearchForBooks;
 using CleanReaderBot.Webhooks.Models;
 using CleanReaderBot.Webhooks.Services;
+using CleanReaderBot.Webhooks.Tests.Comparers;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 using Telegram.Bot;
+using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InlineQueryResults;
 using Xunit;
 
@@ -65,7 +67,7 @@ namespace CleanReaderBot.Webhooks.Tests.Services {
 
             await TelegramBotClient.Received ().AnswerInlineQueryAsync (
                 inlineQueryId: inlineQueryId,
-                results: Arg.Is<IList<InlineQueryResultArticle>> (iqras => iqras.SequenceEqual(inlineQueryResults))
+                results: Arg.Is<IList<InlineQueryResultArticle>> (iqras => iqras.SequenceEqual(inlineQueryResults, new InlineQueryResultArticleComparer()))
             );
         }
 
@@ -74,7 +76,7 @@ namespace CleanReaderBot.Webhooks.Tests.Services {
             var book = GetExampleBook();
             var inputTextMessageContent = TelegramBotService.CreateInputTextMessageContent (book);
 
-            inputTextMessageContent.MessageText.Should ().Be ($"<a href=\"{book.ImageUrl}\" target=\"_black\">&#8203;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
+            inputTextMessageContent.MessageText.Should().Be ($"<a href=\"{book.ImageUrl}\" target=\"_black\">&#8203;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
         }
 
         [Fact]
