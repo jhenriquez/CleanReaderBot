@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using CleanReaderBot.Application.SearchForBooks;
 
-namespace CleanReaderBot.Application.Goodreads {
+namespace CleanReaderBot.Application.BookProvider.Goodreads {
     public static class GoodreadsUriBuilder {
         public static UriBuilder BuildFor (SearchBooks query, GoodreadsAPISettings settings) {
             var uri = new UriBuilder ("https://www.goodreads.com/search/index.xml");

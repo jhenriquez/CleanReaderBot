@@ -1,7 +1,7 @@
 using System.Xml.Serialization;
 using CleanReaderBot.Application.Common.Entities;
 
-namespace CleanReaderBot.Application.Goodreads
+namespace CleanReaderBot.Application.BookProvider.Goodreads
 {
   [XmlRoot("GoodreadsResponse")]
   public class GoodreadsResponse

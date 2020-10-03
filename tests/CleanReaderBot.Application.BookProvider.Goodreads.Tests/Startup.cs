@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using JustEat.HttpClientInterception;
 using CleanReaderBot.Application.Tests.Helpers;
 
-namespace CleanReaderBot.Application.Goodreads.Tests
+namespace CleanReaderBot.Application.BookProvider.Goodreads.Tests
 {
     public class Startup
     {

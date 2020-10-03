@@ -1,4 +1,4 @@
-namespace CleanReaderBot.Application.Goodreads
+namespace CleanReaderBot.Application.BookProvider.Goodreads
 {
     public class GoodreadsAPISettings
     {

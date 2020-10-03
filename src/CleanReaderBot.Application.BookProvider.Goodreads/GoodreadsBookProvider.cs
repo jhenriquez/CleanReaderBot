@@ -9,7 +9,7 @@ using CleanReaderBot.Application.Common.Interfaces;
 using CleanReaderBot.Application.SearchForBooks;
 
 
-namespace CleanReaderBot.Application.Goodreads
+namespace CleanReaderBot.Application.BookProvider.Goodreads
 {
   public class GoodreadsBookProvider : IBookProvider
   {

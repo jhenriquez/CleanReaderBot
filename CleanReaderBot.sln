@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1259A9DE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.Tests", "tests\CleanReaderBot.Application.Tests\CleanReaderBot.Application.Tests.csproj", "{FF7CF22D-EEA9-4478-BFDB-47DD474D1A24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.Goodreads", "src\CleanReaderBot.Application.Goodreads\CleanReaderBot.Application.Goodreads.csproj", "{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.BookProvider.Goodreads", "src\CleanReaderBot.Application.BookProvider.Goodreads\CleanReaderBot.Application.BookProvider.Goodreads.csproj", "{3F8D2B2E-DBDB-401D-BF6C-10370CBF94F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Webhooks", "src\CleanReaderBot.Webhooks\CleanReaderBot.Webhooks.csproj", "{936C0409-D562-403E-A7B7-6F8388B01359}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Webhooks.Tests", "tests\CleanReaderBot.Webhooks.Tests\CleanReaderBot.Webhooks.Tests.csproj", "{898053A7-7108-4BA6-8106-A69B0BC4BB14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.Goodreads.Tests", "tests\CleanReaderBot.Application.Goodreads.Tests\CleanReaderBot.Application.Goodreads.Tests.csproj", "{8D776B72-72D7-4300-8396-9F235474166E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Application.BookProvider.Goodreads.Tests", "tests\CleanReaderBot.Application.BookProvider.Goodreads.Tests\CleanReaderBot.Application.BookProvider.Goodreads.Tests.csproj", "{8D776B72-72D7-4300-8396-9F235474166E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanReaderBot.Webhooks.IntegrationTests", "tests\CleanReaderBot.Webhooks.IntegrationTests\CleanReaderBot.Webhooks.IntegrationTests.csproj", "{59268E5E-73EC-4FA8-8D0D-A2C9FBD55734}"
 EndProject

@@ -11,7 +11,7 @@ using CleanReaderBot.Application.SearchForBooks;
 using System.Net.Http;
 using System.Linq;
 
-namespace CleanReaderBot.Application.Goodreads.Tests
+namespace CleanReaderBot.Application.BookProvider.Goodreads.Tests
 {
   public class GoodreadsBookProviderTest
   {

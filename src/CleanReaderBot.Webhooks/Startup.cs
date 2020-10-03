@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using CleanReaderBot.Application;
-using CleanReaderBot.Application.Goodreads;
+using CleanReaderBot.Application.BookProvider.Goodreads;
 using CleanReaderBot.Webhooks.Services;
 using CleanReaderBot.Webhooks.Models;
 

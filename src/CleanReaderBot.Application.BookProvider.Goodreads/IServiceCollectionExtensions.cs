@@ -2,7 +2,7 @@ using CleanReaderBot.Application.Common.Interfaces;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanReaderBot.Application.Goodreads
+namespace CleanReaderBot.Application.BookProvider.Goodreads
 {
   public static class IServiceCollectionExtensions
   {

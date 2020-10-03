@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanReaderBot.Application\CleanReaderBot.Application.csproj" />
-    <ProjectReference Include="..\CleanReaderBot.Application.Goodreads\CleanReaderBot.Application.Goodreads.csproj" />
+    <ProjectReference Include="..\CleanReaderBot.Application.BookProvider.Goodreads\CleanReaderBot.Application.BookProvider.Goodreads.csproj" />
   </ItemGroup>
 
 </Project>

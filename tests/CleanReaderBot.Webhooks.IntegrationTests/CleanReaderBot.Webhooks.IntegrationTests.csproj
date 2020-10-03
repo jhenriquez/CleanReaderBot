@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\CleanReaderBot.Webhooks\CleanReaderBot.Webhooks.csproj" />
-    <ProjectReference Include="..\..\src\CleanReaderBot.Application.Goodreads\CleanReaderBot.Application.Goodreads.csproj" />
+    <ProjectReference Include="..\..\src\CleanReaderBot.Application.BookProvider.Goodreads\CleanReaderBot.Application.BookProvider.Goodreads.csproj" />
   </ItemGroup>
 
 </Project>
