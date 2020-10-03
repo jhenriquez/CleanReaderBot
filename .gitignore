@@ -29,3 +29,4 @@ nupkg/
 Properties
 [Ss]ecrets.json
 .envrc
+.env
