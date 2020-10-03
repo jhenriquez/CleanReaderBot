@@ -10,4 +10,4 @@ RUN dotnet publish -c Release -o build
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/build .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet CleanReaderBot.Webhooks.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet ReaderBot.Webhooks.dll
