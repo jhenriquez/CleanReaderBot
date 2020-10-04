@@ -13,23 +13,29 @@ namespace ReaderBot.Application.GetBookInformation {
             BookId = id;
         }
 
-        public class Handler : IHandler<GetBook, GetBookResult>
-        {
+        public override bool Equals (object obj) {
+            return obj is GetBook book &&
+                BookId == book.BookId;
+        }
+
+        public override int GetHashCode () {
+            return HashCode.Combine (BookId);
+        }
+
+        public class Handler : IHandler<GetBook, GetBookResult> {
             private IBookProvider BookProvider { get; }
 
-            public Handler(IBookProvider bookProvider)
-            {
+            public Handler (IBookProvider bookProvider) {
                 if (bookProvider == null) {
-                    throw new ArgumentNullException("A book provider is required. The provided value is null.");
+                    throw new ArgumentNullException ("A book provider is required. The provided value is null.");
                 }
 
                 BookProvider = bookProvider;
             }
 
-            public async Task<GetBookResult> Execute(GetBook query)
-            {
-                var book = await BookProvider.GetBook(query);
-                return new GetBookResult(book);
+            public async Task<GetBookResult> Execute (GetBook query) {
+                var book = await BookProvider.GetBook (query);
+                return new GetBookResult (book);
             }
         }
     }

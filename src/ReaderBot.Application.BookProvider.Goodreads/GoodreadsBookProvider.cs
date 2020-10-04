@@ -37,6 +37,7 @@ namespace ReaderBot.Application.BookProvider.Goodreads {
           Id = book.Id.ToString (),
           AverageRating = book.AverageRating,
           Title = book.Title,
+          Description = book.Description,
           Authors = book.Authors.Select((author) => new Author { Id = author.Id.ToString(), Name = author.Name } ).ToArray(),
           ImageUrl = book.ImageUrl,
           SmallImageUrl = book.SmallImageUrl

@@ -39,9 +39,10 @@ namespace ReaderBot.Application.BookProvider.Goodreads
       public string SmallImageUrl { get; set; }
       [XmlElement("average_rating")]
       public double AverageRating { get; set; }
-
       [XmlArray("authors"), XmlArrayItem("author")]
       public GoodreadsResponseAuthor[] Authors { get; set; }
+      [XmlElement("description")]
+      public string Description { get; set;}
   }
 
   public class GoodreadsResponseAuthor {

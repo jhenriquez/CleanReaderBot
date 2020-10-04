@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using ReaderBot.Application.Common.Entities;
+using ReaderBot.Application.GetBookInformation;
 using ReaderBot.Application.SearchForBooks;
 
 namespace ReaderBot.Webhooks.Services
@@ -7,7 +7,7 @@ namespace ReaderBot.Webhooks.Services
     public interface IBotService
     {
         Task StartWebhook();
-
-        Task SendSearchResults(SearchBooksResult result, string messageId = default);
+        Task SendSearchResults(SearchBooksResult result, string refMessageId = default);
+        Task SendGetBookResult(GetBookResult expectedGetBookResult, string refMessageId = default);
     }
 }

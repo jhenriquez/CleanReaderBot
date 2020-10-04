@@ -36,7 +36,7 @@ namespace ReaderBot.Application.SearchForBooks {
 
       public async Task<SearchBooksResult> Execute (SearchBooks query) {
         var books = await provider.Search (query);
-        return SearchBooksResult.For (books);
+        return new SearchBooksResult(books);
       }
     }
   }

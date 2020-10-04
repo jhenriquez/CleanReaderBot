@@ -10,5 +10,6 @@ namespace ReaderBot.Webhooks.Services
     {
         InputTextMessageContent CreateInputTextMessageContent(Book book);
         InlineQueryResultArticle CreateInlineQueryResultArticle(Book book, Func<Book, InputMessageContentBase> createInputMessageContent);
+        string GenerateBookMarkup(Book book);
     }
 }
