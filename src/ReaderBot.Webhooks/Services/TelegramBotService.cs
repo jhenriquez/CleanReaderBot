@@ -37,7 +37,7 @@ namespace ReaderBot.Webhooks.Services {
     }
 
     public InputTextMessageContent CreateInputTextMessageContent (Book book) {
-      var bookInfoHTML = $"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n&#127775 <b>{String.Format("{0:0.00}",book.AverageRating)}</b>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.";
+      var bookInfoHTML = $"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy {String.Join(", ", book.Authors.Select((author) => $"<a href=\"https://www.goodreads.com/author/show/{author.Id}\">{author.Name}</a>"))}\n&#127775 <b>{String.Format("{0:0.00}",book.AverageRating)}</b>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.";
       var inputTextMessageContent = new InputTextMessageContent (bookInfoHTML);
       inputTextMessageContent.ParseMode = ParseMode.Html;
       return inputTextMessageContent;
@@ -46,7 +46,7 @@ namespace ReaderBot.Webhooks.Services {
     public InlineQueryResultArticle CreateInlineQueryResultArticle (Book book, Func<Book, InputMessageContentBase> createInputMessageContent) {
       var inputMessageContent = createInputMessageContent (book);
       return new InlineQueryResultArticle (book.Id.ToString (), book.Title, inputMessageContent) {
-        Description = book.Author.Name,
+        Description = String.Join(", ", book.Authors.ToList()),
           ThumbUrl = book.SmallImageUrl
       };
     }

@@ -21,7 +21,10 @@
     <ProjectReference Include="..\..\src\ReaderBot.Application.BookProvider.Goodreads\ReaderBot.Application.BookProvider.Goodreads.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Fixtures/EndersGame_Response.xml">
+    <None Update="Fixtures/EndersGame_BookSearch_Response.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Fixtures/375802_BookShow_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

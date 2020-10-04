@@ -7,7 +7,9 @@ namespace ReaderBot.Application.BookProvider.Goodreads
   public class GoodreadsResponse
   {
     [XmlElement("search")]
-    public GoodreadsResponseSearch Result { get; set; }
+    public GoodreadsResponseSearch Search { get; set; }
+    [XmlElement("book")]
+    public GoodreadsResponseBook Book { get; set; }
   }
 
   public class GoodreadsResponseSearch
@@ -35,6 +37,11 @@ namespace ReaderBot.Application.BookProvider.Goodreads
       public string ImageUrl { get; set; }
       [XmlElement("small_image_url")]
       public string SmallImageUrl { get; set; }
+      [XmlElement("average_rating")]
+      public double AverageRating { get; set; }
+
+      [XmlArray("authors"), XmlArrayItem("author")]
+      public GoodreadsResponseAuthor[] Authors { get; set; }
   }
 
   public class GoodreadsResponseAuthor {

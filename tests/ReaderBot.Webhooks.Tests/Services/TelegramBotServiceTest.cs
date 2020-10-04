@@ -42,10 +42,7 @@ namespace ReaderBot.Webhooks.Tests.Services {
                 Id = "375802",
                 Title = "Ender's Game (Ender's Saga, #1)",
                 AverageRating = 4.30,
-                Author = new Author {
-                Id = 589,
-                Name = "Orson Scott Card"
-                },
+                Authors = new Author[] { new Author { Id = "589", Name = "Orson Scott Card" } },
                 ImageUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408303130l/375802._SY160_.jpg",
                 SmallImageUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408303130l/375802._SY75_.jpg"
             };
@@ -76,7 +73,7 @@ namespace ReaderBot.Webhooks.Tests.Services {
             var book = GetExampleBook();
             var inputTextMessageContent = TelegramBotService.CreateInputTextMessageContent (book);
 
-            inputTextMessageContent.MessageText.Should().Be ($"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy <a href=\"https://www.goodreads.com/author/show/{book.Author.Id}\">{book.Author.Name}</a>\n&#127775 <b>{String.Format("{0:0.00}",book.AverageRating)}</b>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
+            inputTextMessageContent.MessageText.Should().Be($"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy {String.Join(", ", book.Authors.Select((author) => $"<a href=\"https://www.goodreads.com/author/show/{author.Id}\">{author.Name}</a>"))}\n&#127775 <b>{String.Format("{0:0.00}",book.AverageRating)}</b>\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.");
             inputTextMessageContent.ParseMode = ParseMode.Html;
         }
 
@@ -87,7 +84,7 @@ namespace ReaderBot.Webhooks.Tests.Services {
             var inlineQueryResultArticle = TelegramBotService.CreateInlineQueryResultArticle(book, createInputMessageContent);
 
             inlineQueryResultArticle.Title.Should().Be(book.Title);
-            inlineQueryResultArticle.Description.Should().Be(book.Author.Name);
+            inlineQueryResultArticle.Description.Should().Be(String.Join(", ", book.Authors.ToList()));
             inlineQueryResultArticle.ThumbUrl.Should().Be(book.SmallImageUrl);
             createInputMessageContent.ReceivedCalls();
         }
