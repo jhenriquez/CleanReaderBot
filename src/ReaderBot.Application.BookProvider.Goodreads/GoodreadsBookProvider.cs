@@ -13,38 +13,42 @@ using ReaderBot.Application.SearchForBooks;
 
 namespace ReaderBot.Application.BookProvider.Goodreads {
   public class GoodreadsBookProvider : IBookProvider {
-    private readonly HttpClient client;
-    private readonly GoodreadsAPISettings settings;
+    private HttpClient Client { get; }
+    private GoodreadsAPISettings Settings { get; }
 
     public GoodreadsBookProvider (HttpClient client, IOptions<GoodreadsAPISettings> settings) {
       if (String.IsNullOrEmpty (settings.Value.Key)) {
         throw new ArgumentException ("The Goodreads API Key is required.");
       }
 
-      this.client = client;
-      this.settings = settings.Value;
+      Client = client;
+      Settings = settings.Value;
     }
 
     public async Task<Book?> GetBook (GetBook getBookQuery) {
-      var uri = GoodreadsUriBuilder.BuildFor (getBookQuery, settings);
-      var responseStream = await this.client.GetStreamAsync (uri.ToString ());
-      var xmlSerializer = new XmlSerializer (typeof (GoodreadsResponse));
-      var response = (GoodreadsResponse) xmlSerializer.Deserialize (responseStream);
-      var book = response.Book;
-      
-      return new Book {
-        Id = book.Id.ToString (),
-        AverageRating = book.AverageRating,
-        Title = book.Title,
-        Authors = book.Authors.Select((author) => new Author { Id = author.Id.ToString(), Name = author.Name } ).ToArray(),
-        ImageUrl = book.ImageUrl,
-        SmallImageUrl = book.SmallImageUrl
-      };
+      try {
+        var uri = GoodreadsUriBuilder.BuildFor (getBookQuery, Settings);
+        var responseStream = await Client.GetStreamAsync (uri.ToString ());
+        var xmlSerializer = new XmlSerializer (typeof (GoodreadsResponse));
+        var response = (GoodreadsResponse) xmlSerializer.Deserialize (responseStream);
+        var book = response.Book;
+
+        return new Book {
+          Id = book.Id.ToString (),
+          AverageRating = book.AverageRating,
+          Title = book.Title,
+          Authors = book.Authors.Select((author) => new Author { Id = author.Id.ToString(), Name = author.Name } ).ToArray(),
+          ImageUrl = book.ImageUrl,
+          SmallImageUrl = book.SmallImageUrl
+        };
+      } catch {
+        return null;
+      }
     }
 
     public async Task<Book[]> Search (SearchBooks query) {
-      var uri = GoodreadsUriBuilder.BuildFor (query, settings);
-      var responseStream = await this.client.GetStreamAsync (uri.ToString ());
+      var uri = GoodreadsUriBuilder.BuildFor (query, Settings);
+      var responseStream = await Client.GetStreamAsync (uri.ToString ());
       var xmlSerializer = new XmlSerializer (typeof (GoodreadsResponse));
       var response = (GoodreadsResponse) xmlSerializer.Deserialize (responseStream);
 
