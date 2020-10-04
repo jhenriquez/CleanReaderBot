@@ -1,10 +1,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using ReaderBot.Application.Common.Interfaces;
-using ReaderBot.Application.SearchForBooks;
 using FluentAssertions;
 using NSubstitute;
+using ReaderBot.Application.Common.Interfaces;
+using ReaderBot.Application.SearchForBooks;
 using Xunit;
 
 namespace ReaderBot.Application.Tests {
@@ -32,7 +32,7 @@ namespace ReaderBot.Application.Tests {
     }
 
     [Fact]
-    public async Task SearchBooks__Handler__Uses_BookProvider () {
+    public async Task SearchBooks__Handler__Uses_BookProvider__Search_Method () {
       var bookProvider = Substitute.For<IBookProvider> ();
       var searchBooksQuery = new SearchBooks ("Ender's Game");
       var searchBooksHandler = new SearchBooks.Handler (bookProvider);
