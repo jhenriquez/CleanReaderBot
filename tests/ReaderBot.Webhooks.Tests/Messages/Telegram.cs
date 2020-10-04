@@ -75,7 +75,7 @@ namespace ReaderBot.Webhooks.Tests.Messages
             var booksSearchResult = SearchBooksResult.For(new Book[]
             {   
                 new Book() {
-                    Id = rand.Next(10000),
+                    Id = rand.Next(10000).ToString(),
                     Title = "Probably a book that does not exist in real life."
                 }
             });

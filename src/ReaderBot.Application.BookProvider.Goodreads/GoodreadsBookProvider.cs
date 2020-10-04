@@ -36,7 +36,7 @@ namespace ReaderBot.Application.BookProvider.Goodreads
       return response.Result.Works.Select(w => 
       {
         return new Book {
-          Id = w.BestBook.Id,
+          Id = w.BestBook.Id.ToString(),
           AverageRating = w.AverageRating,
           Title = w.BestBook.Title,
           Author = new Author {

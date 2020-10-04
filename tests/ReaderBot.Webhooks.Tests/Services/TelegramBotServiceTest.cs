@@ -39,7 +39,7 @@ namespace ReaderBot.Webhooks.Tests.Services {
 
         private Book GetExampleBook () {
             return new Book () {
-                Id = 375802,
+                Id = "375802",
                 Title = "Ender's Game (Ender's Saga, #1)",
                 AverageRating = 4.30,
                 Author = new Author {

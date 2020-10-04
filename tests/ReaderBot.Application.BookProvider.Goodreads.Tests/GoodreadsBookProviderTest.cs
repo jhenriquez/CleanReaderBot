@@ -80,7 +80,7 @@ namespace ReaderBot.Application.BookProvider.Goodreads.Tests
         var lastElement = result.Items.Last();
 
         firstElement.Should().NotBeNull();
-        firstElement.Id.Should().Be(375802);
+        firstElement.Id.Should().Be("375802");
         firstElement.Title.Should().Be("Ender's Game (Ender's Saga, #1)");
         firstElement.Author.Id.Should().Be(589);
         firstElement.Author.Name.Should().Be("Orson Scott Card");
@@ -89,7 +89,7 @@ namespace ReaderBot.Application.BookProvider.Goodreads.Tests
         firstElement.SmallImageUrl.Should().Be("https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408303130l/375802._SY75_.jpg");
 
         lastElement.Should().NotBeNull();
-        lastElement.Id.Should().Be(33144572);
+        lastElement.Id.Should().Be("33144572");
         lastElement.Title.Should().Be("End Game (Fallen Empire, #8)");
         lastElement.Author.Id.Should().Be(4512224);
         lastElement.Author.Name.Should().Be("Lindsay Buroker");
