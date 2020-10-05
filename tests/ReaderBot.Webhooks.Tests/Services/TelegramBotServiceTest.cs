@@ -120,5 +120,14 @@ namespace ReaderBot.Webhooks.Tests.Services {
                 .Should()
                 .Throw<ArgumentNullException>();
         }
+
+        [Fact]
+        public void TelegramBotService__GenerateBookMarkup__Replaces_Br_Tags_With_Carriage_Returns () {
+            var book = GetExampleBook();
+            var brElementRegExp = @"<br\s+?/>";
+            book.Description.Should().MatchRegex(brElementRegExp);
+            var bookMarkup = TelegramBotService.GenerateBookMarkup(book);
+            bookMarkup.Should().NotMatchRegex(brElementRegExp);
+        }
     }
 }

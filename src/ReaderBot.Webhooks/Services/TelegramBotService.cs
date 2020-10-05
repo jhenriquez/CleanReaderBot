@@ -43,7 +43,7 @@ namespace ReaderBot.Webhooks.Services {
       var brElementRegExp = new Regex(@"<br\s+?/>", RegexOptions.IgnoreCase);
       var bookDescription = brElementRegExp.Replace(book.Description, new MatchEvaluator((_) => "\n"));
 
-      return $"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy {String.Join(", ", book.Authors.Select((author) => $"<a href=\"https://www.goodreads.com/author/show/{author.Id}\">{author.Name}</a>"))}\n&#127775<b>{String.Format ("{0:0.00}",book.AverageRating)}</b>{(String.IsNullOrEmpty(bookDescription) ? "" : $"\n\n{bookDescription}")}\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.";
+      return $"<a href=\"{book.ImageUrl}\">&#8205;</a><b>{book.Title}</b>\nBy {String.Join(", ", book.Authors.Select((author) => $"<a href=\"https://www.goodreads.com/author/show/{author.Id}\">{author.Name}</a>"))}\n&#127775 <b>{String.Format ("{0:0.00}",book.AverageRating)}</b>{(String.IsNullOrEmpty(bookDescription) ? "" : $"\n\n{bookDescription}")}\n\nRead more about this book on <a href=\"https://www.goodreads.com/book/show/{book.Id}\">Goodreads</a>.";
     }
 
     public InputTextMessageContent CreateInputTextMessageContent (Book book) {
